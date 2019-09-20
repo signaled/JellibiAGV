@@ -12,10 +12,6 @@
 class LiftControl
 {
 private:
-    const int SERVO1_LIFTUP_ANGLE   = 0;
-    const int SERVO1_PUTDOWN_ANGLE  = 80;
-    const int SERVO2_LIFTUP_ANGLE   = 170;
-    const int SERVO2_PUTDOWN_ANGLE  = 80;
     const int MOVE_STEP = 30;
 protected:
     uint8_t _servo1Pin;

@@ -7,37 +7,36 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
 #include <Arduino.h>
+/*
 
-/* 
      Playground 
-
-
+     
       1       2       3       4       5       6       7       8
       ┬       ┬       ┬       ┬       ┬       ┬       ┬       ┬
  A  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- B  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ B  ├─┼───────A───────x───────x───────x───────┼───────┼───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- C  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ C  ├─┼───────┼───────x───────x───────x───────┼───────┼───────A─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- D  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ D  ├─S───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- E  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ E  ├─S───────┼───────┼───────┼───────x───────x───────┼───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- F  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ F  ├─┼───────┼───────B───────┼───────x───────x───────B───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
- G  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
+ G  ├─┼───────┼───────┼───────┼───────x───────x───────┼───────┼─┤
       │       │       │       │       │       │       │       │
       │       │       │       │       │       │       │       │
  H  ├─┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼─┤
       ┴       ┴       ┴       ┴       ┴       ┴       ┴       ┴
-    Seoul  InCheon SeJong  Daejeon  Daegu  KwangJu ChunCeon Jeju
+    Seoul  InCheon SeJong  Daejeon  Daegu  KwangJu ChunCheon Jeju
 
 */
 
@@ -75,7 +74,7 @@ enum CMD {
 
 
 #define RFIDUID_SCENARIO1 "09D0047F" 
-#define RFIDUID_SCENARIO2 "86E634EF" 
+#define RFIDUID_SCENARIO2 "FFD9FC07" 
 
 #define STEP_FORWARD_DURATION       250
 #define STEP_BACKWARD_DURATION      400
@@ -84,11 +83,16 @@ enum CMD {
 #define NORMAL_DRIVE_SPEED    50 
 
 #define TURN_INITIAL_WHEEL_SPEED 90 
-#define TURN_INSIDE_WHEEL_SPEED  30 
-#define TURN_OUTSIDE_WHEEL_SPEED 70 
+#define TURN_INSIDE_WHEEL_SPEED  40 
+#define TURN_OUTSIDE_WHEEL_SPEED 90 
 
 #define LINEDETECT_THRESHOLD_MIN 700 
 #define BLANKDETECT_THERSHOLD_MAX 500 
+
+#define SERVO1_PUTDOWN_ANGLE 90
+#define SERVO1_LIFTUP_ANGLE 0
+#define SERVO2_PUTDOWN_ANGLE 0
+#define SERVO2_LIFTUP_ANGLE 90
 
 
 #endif//__DEFINE_H__

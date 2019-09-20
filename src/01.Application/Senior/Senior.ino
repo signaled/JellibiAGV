@@ -18,6 +18,7 @@
  *   D11 : RFID Reader control : SPI MOSI 
  *   D12 : RFID Reader control : SPI MISO 
  *   D13 : RFID Reader control : SPI SCL
+ *   A3 : 측면 사용자버튼 : GPI
  *   A0 : 전면 센서보드 가운데 IR 센서 : ADC
  *   A1 : 전면 센서보드 왼쪽 IR 센서 : ADC
  *   A2 : 전면 센서보드 오른쪽 IR 센서 : ADC 

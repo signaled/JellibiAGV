@@ -5,7 +5,7 @@
  */
 
 #include "LiftControl.h"
-
+#include "Define.h"
 
 LiftControl::LiftControl(uint8_t servo1Pin, uint8_t servo2Pin)
 : _liftState(false)

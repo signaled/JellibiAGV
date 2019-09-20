@@ -73,7 +73,7 @@ void Drive::PivotTurnLeft()
     delay(10);
     analogWrite( _leftWheelPwm, _turnHighSpeed);
     analogWrite( _rightWheelPwm, _turnHighSpeed);
-    delay(100);
+    delay(120);
     analogWrite( _leftWheelPwm, _turnLowSpeed);
     analogWrite( _rightWheelPwm, _turnSpeed);
     delay(600);
@@ -115,7 +115,7 @@ void Drive::PivotTurnRight()
     delay(10);
     analogWrite( _rightWheelPwm, _turnHighSpeed);
     analogWrite( _leftWheelPwm, _turnHighSpeed);
-    delay(100);
+    delay(120);
     analogWrite( _rightWheelPwm, _turnLowSpeed);
     analogWrite( _leftWheelPwm, _turnSpeed);
     delay(600);
@@ -139,7 +139,7 @@ void Drive::LineTrace()
 uint16_t Drive::LineCounter() 
 {
     static uint8_t bSignalHigh = 0;
-    if (_rightValue > 700 && _leftValue > 700) {
+    if (_rightValue > LINEDETECT_THRESHOLD_MIN && _leftValue > LINEDETECT_THRESHOLD_MIN ) {
         if (bSignalHigh==0) {
             _nLineCounter++;
             if (Serial) {
@@ -147,7 +147,7 @@ uint16_t Drive::LineCounter()
             }
             bSignalHigh = 1;
         }
-    } else if (_rightValue < 500 && _leftValue < 500) {
+    } else if (_rightValue < BLANKDETECT_THERSHOLD_MAX && _leftValue < BLANKDETECT_THERSHOLD_MAX) {
         if (bSignalHigh) {
             bSignalHigh = 0;
         }

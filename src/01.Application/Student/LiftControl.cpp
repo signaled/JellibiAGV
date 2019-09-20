@@ -5,6 +5,7 @@
  */
 
 #include "LiftControl.h"
+#include "Define.h"
 
 
 LiftControl::LiftControl(uint8_t servo1Pin, uint8_t servo2Pin)
@@ -19,7 +20,7 @@ void LiftControl::Init()
     _servo1.attach(_servo1Pin);
     _servo2.attach(_servo2Pin);
     // default to Lift down state
-    _servo1.write(SERVO1_PUTDOWN_ANGLE);
+    _servo1.write(SERVO1_PUTDOWN_ANGLE); 
     _servo2.write(SERVO2_PUTDOWN_ANGLE);
 }
 

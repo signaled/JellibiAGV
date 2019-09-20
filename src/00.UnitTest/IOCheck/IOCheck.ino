@@ -19,12 +19,19 @@
  *   D11 : RFID Reader control : SPI MOSI 
  *   D12 : RFID Reader control : SPI MISO 
  *   D13 : RFID Reader control : SPI SCL
+ *   A3 : 측면 사용자 버튼 : GPI
  *   A0 : 전면 센서보드 가운데 IR 센서 : ADC
  *   A1 : 전면 센서보드 왼쪽 IR 센서 : ADC
  *   A2 : 전면 센서보드 오른쪽 IR 센서 : ADC 
  *   A6 : 바닥면 센서보드 왼쪽 IR 센서 : ADC
  *   A7 : 바닥면 센서보드 오른쪽 IR 센서 : ADC
  */
+#include <JellibiButton.h>
+
+// {{{ User Button
+JellibiButton _button;
+#define USER_BUTTON A3
+// }}}
 
 // {{{ Drive Function 
 #define WHEEL_RIGHT_PWM   6
@@ -73,13 +80,13 @@ void PlayTone();
 #include <Servo.h>
 
 #define SERVO1_PIN 9 //Servo1
-#define SERVO1_MIN 80
+#define SERVO1_MIN 90
 #define SERVO1_MAX 00
 #define SERVO1_DEF SERVO1_MIN
 
 #define SERVO2_PIN 10 // Servo2
-#define SERVO2_MIN 90
-#define SERVO2_MAX 170
+#define SERVO2_MIN 00
+#define SERVO2_MAX 90
 #define SERVO2_DEF SERVO2_MIN 
 
 Servo _servo1;
@@ -99,27 +106,27 @@ void setup() {
   delay(1000);
   //PlayTone();
   InitWheel();
+  _button.Init(USER_BUTTON, false);
 }
 
 void loop() {
   
   // put your main code here, to run repeatedly:
-  /*LiftUp();
+  if (!_button.Check())
+  {
+    return;
+  }
+  TestDrive();
+  delay(1000);
+  LiftUp();
   delay(1000);
   PutDown();
   delay(1000);
-  LiftUp();
-  if(ReadRFIDReader()){
-    PlayTone();
+  while(!ReadRFIDReader()){
+    delay(500);
   }
-  //TestDrive();
-
-  delay(1000);
-  PutDown();*/
-//  TestTurnRight();
-//  TestTurnLeft();
+  PlayTone();
   SensingIR();
-  delay(100);
 }
 
 
@@ -243,9 +250,18 @@ void TestDrive()
   delay(10);
   analogWrite(WHEEL_RIGHT_PWM, 60);
   analogWrite(WHEEL_LEFT_PWM, 60);
-  delay(1000);
+  delay(1500);
   analogWrite(WHEEL_RIGHT_PWM, 0);
   analogWrite(WHEEL_LEFT_PWM, 0);
+
+  digitalWrite(WHEEL_RIGHT_DIR, HIGH);
+  digitalWrite(WHEEL_LEFT_DIR, LOW);
+  delay(100);
+  analogWrite(WHEEL_RIGHT_PWM, 60);
+  analogWrite(WHEEL_LEFT_PWM, 60);
+  delay(1500);
+  analogWrite(WHEEL_RIGHT_PWM, 0);
+  analogWrite(WHEEL_LEFT_PWM, 0);    
 }
 
 void TestTurnRight()

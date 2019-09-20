@@ -93,7 +93,7 @@ void Drive::PivotTurnLeft()
     delay(10);
     analogWrite( _leftWheelPwm, _turnHighSpeed);
     analogWrite( _rightWheelPwm, _turnHighSpeed);
-    delay(100);
+    delay(120);
     analogWrite( _leftWheelPwm, _turnLowSpeed);
     analogWrite( _rightWheelPwm, _turnSpeed);
     delay(600);
@@ -115,7 +115,7 @@ void Drive::PivotTurnRight()
     delay(10);
     analogWrite( _rightWheelPwm, _turnHighSpeed);
     analogWrite( _leftWheelPwm, _turnHighSpeed);
-    delay(100);
+    delay(120);
     analogWrite( _rightWheelPwm, _turnLowSpeed);
     analogWrite( _leftWheelPwm, _turnSpeed);
     delay(600);
